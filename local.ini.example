@@ -1,0 +1,37 @@
+; Copy this file to local.ini before editing. 
+
+; Put local overrides in this file to keep them out of the git repository
+; Specifically, if an upload hangs, specify the upload_port and debug_port
+; to the GDB port. The blackmagic probe debugger has a GDB serial port and 
+; a UART serial port available, and PlatformIO sometimes picks the UART port
+; to download code.
+
+; Windows: 
+;  Open Device Manager and look under Ports. There should be two USB Serial Devices.
+;  One of those is the GDB port, one is the UART port. They're pretty much indistinguishable.
+;  Pick one, if it hangs for more than 3 seconds uploading, unplug the debugger, plug it back
+;  in and use the other port.
+
+; MacOS:
+;  ls /dev/cu.*
+;  You should see multiple devices like /dev/cu.usbmodem5596E0E11 or similar. Pick the line that
+;  ends with a 1, that *should* be the GDB port.
+
+; Linux:
+;  The auto-detection should work fine for linux. If it doesn't, pick a /dev/ttyACM# port and try
+;  the other if it hangs.
+
+[env:computesplus]
+; macOS
+; debug_port = /dev/cu.usbmodem5596E0E11
+; upload_port = /dev/cu.usbmodem5596E0E11
+
+; Linux
+; debug_port = /dev/ttyACM0
+; upload_port = /dev/ttyACM0
+
+; Windows for COM1-COM9
+; debug_port = COM3
+; upload_port = COM3
+; Windows for COM10-XXX
+; debug_port = \\.\COM13

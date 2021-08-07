@@ -5,3 +5,7 @@
 .vscode/ipch
 .DS_Store
 .src
+local.ini
+sources
+!sources/blinky/main.c
+.vscode
