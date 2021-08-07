@@ -10,5 +10,8 @@
     ".pio": true,
     "**/.gitkeep": true
   },
-  "explorerExclude.backup": null
+  "explorerExclude.backup": null,
+  "files.associations": {
+    "samc21.h": "c"
+  }
 }
