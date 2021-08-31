@@ -8,7 +8,26 @@
     ".multisrc": true,
     ".src": true,
     ".pio": true,
+    ".vscode": true,
+    "test/.pio": true,
+    "boards": true,
+    "scripts": true,
     "**/.gitkeep": true
   },
-  "explorerExclude.backup": null
+  "files.associations": {
+    "*.json": "jsonc",
+    "type_traits": "cpp",
+    "memory.h": "c",
+    "string.h": "c",
+    "features.h": "c",
+    "_ansi.h": "c",
+    "cdefs.h": "c",
+    "reent.h": "c",
+    "stdlib.h": "c",
+    "stddef.h": "c",
+    "can.h": "c"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "explorerExclude.backup": null,
 }

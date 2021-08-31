@@ -11,6 +11,6 @@ int main() {
     for (int i = 0; i < 0x80000; i++) {
       __NOP();
     }
-    PORTA.OUTTGL.reg = PORT_PA12;
+    PORTA.OUTTGL.reg = PORT_PA15;
   }
 }
