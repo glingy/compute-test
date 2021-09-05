@@ -5,6 +5,7 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
+    "**/Thumbs.db": true,
     ".multisrc": true,
     ".src": true,
     ".pio": true,
@@ -25,8 +26,10 @@
     "reent.h": "c",
     "stdlib.h": "c",
     "stddef.h": "c",
-    "can.h": "c"
+    "can.h": "c",
+    "pl_can.h": "c"
   },
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
+  "explorerExclude.backup": null
 }
