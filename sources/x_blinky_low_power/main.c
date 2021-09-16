@@ -1,0 +1,67 @@
+#include <pl_can.h>
+#include <pl_clocks.h>
+#include <pl_defs.h>
+#include <samc21.h>
+
+void TC0_Handler() {
+  TC0->COUNT16.INTFLAG.reg = TC_INTFLAG_OVF;
+  PORTA.OUTTGL.reg         = PORT_PA15;
+}
+
+int main() {
+  /** INITIALIZATION **/
+  pl_cpu_init();
+  MCLK->CPUDIV.reg = 0;
+
+  MCLK->APBCMASK.bit.TC0_ = 1;
+
+  GCLK->GENCTRL[2].reg
+    = GCLK_GENCTRL_SRC_OSCULP32K
+    | GCLK_GENCTRL_OE
+    | GCLK_GENCTRL_RUNSTDBY
+    | GCLK_GENCTRL_GENEN;
+
+  GCLK->PCHCTRL[TC0_GCLK_ID].reg
+    = GCLK_PCHCTRL_GEN_GCLK2
+    | GCLK_PCHCTRL_CHEN;
+
+  TC0->COUNT16.CTRLBSET.reg
+    = TC_CTRLBSET_DIR; // Down
+  //| TC_CTRLBSET_ONESHOT;
+  TC0->COUNT16.WAVE.reg
+    = TC_WAVE_WAVEGEN_MFRQ;
+
+  TC0->COUNT16.CC[0].reg = 16383;
+
+  TC0->COUNT16.INTENSET.reg = TC_INTENSET_OVF;
+  __enable_irq();
+  __NVIC_EnableIRQ(TC0_IRQn);
+
+  TC0->COUNT16.CTRLA.reg
+    = TC_CTRLA_PRESCALER_DIV2
+    | TC_CTRLA_RUNSTDBY
+    | TC_CTRLA_ENABLE;
+
+  while(TC0->COUNT16.SYNCBUSY.reg) continue;
+
+  TC0->COUNT16.CTRLBSET.reg = TC_CTRLBSET_CMD_RETRIGGER;
+
+  PORTB.DIRSET.reg     = PORT_PB08 | PORT_PB16;
+  PORTB.PINCFG[8].reg  = PORT_PINCFG_PMUXEN;
+  PORTB.PINCFG[16].reg = PORT_PINCFG_PMUXEN;
+  PORTB.PMUX[4].reg    = PORT_PMUX_PMUXE(PINMUX_PB08E_TC0_WO0);
+  PORTB.PMUX[8].reg    = PORT_PMUX_PMUXE(PINMUX_PB16H_GCLK_IO2);
+
+  PORTA.DIR.reg
+    = PORT_PA12 | PORT_PA13 | PORT_PA14 | PORT_PA15;
+  PORTA.OUTSET.reg = PORT_PA15;
+
+  while(1) {
+    GCLK->GENCTRL[0].reg
+      = GCLK_GENCTRL_SRC_OSCULP32K
+      | GCLK_GENCTRL_GENEN;
+    OSCCTRL->OSC48MCTRL.bit.ENABLE = 0;
+    PM->SLEEPCFG.reg               = PM_SLEEPCFG_SLEEPMODE_STANDBY;
+    __WFI();
+  }
+}
