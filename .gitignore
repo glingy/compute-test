@@ -8,4 +8,4 @@ sources/*
 !sources/blinky
 .src
 local.ini
-!sources/*_example
+!sources/x_*
