@@ -7,6 +7,8 @@
 #define PORTC PORT->Group[2]
 #define PORTD PORT->Group[3]
 
+// Fixing EIC constant expression.
+#define EIC_EXTINT(value) (1 << value)
 
 // Shorthand for passing the length of a constant array using sizeof
 #define ARRAY(arr) arr, (sizeof(arr) / sizeof(arr[0]))
