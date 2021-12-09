@@ -5,7 +5,7 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true,
+    "**/Thumbs.db": false,
     ".multisrc": true,
     ".src": true,
     ".pio": true,
@@ -27,7 +27,8 @@
     "stdlib.h": "c",
     "stddef.h": "c",
     "can.h": "c",
-    "pl_can.h": "c"
+    "pl_can.h": "c",
+    "pl_defs.h": "c"
   },
   "editor.formatOnSave": true,
   "editor.formatOnType": true,

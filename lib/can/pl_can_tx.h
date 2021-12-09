@@ -1,7 +1,7 @@
 #ifndef PL_CAN_TX_H
 #define PL_CAN_TX_H
 
-#include "pl_can_message.h"
+#include "pl_can_types.h"
 
 #include <pl_defs.h>
 #include <sam.h>
@@ -20,11 +20,16 @@ static inline void pl_can_tx_config(Can * can,                             // CA
     | CAN_TXBC_TBSA(num_fifos);        // n FIFOs/Queue buffers
 }
 
-
+/**
+ * Tell the CAN bus to send the message in this dedicated buffer.
+ **/
 static inline void pl_can_tx_send(Can * can, int tx_buffer_idx) {
   can->TXBAR.reg = (1 << tx_buffer_idx);
 }
 
+/**
+ * Check if the CAN bus has a pending transfer in this dedicated buffer.
+ **/
 static inline int pl_can_tx_busy(Can * can, int tx_buffer_idx) {
   return can->TXBRP.reg & (1 << tx_buffer_idx);
 }
