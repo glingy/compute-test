@@ -21,7 +21,7 @@
 ;  The auto-detection should work fine for linux. If it doesn't, pick a /dev/ttyACM# port and try
 ;  the other if it hangs.
 
-[env:computesplus]
+[env:custom]
 ; macOS
 ; debug_port = /dev/cu.usbmodem5596E0E11
 ; upload_port = /dev/cu.usbmodem5596E0E11
