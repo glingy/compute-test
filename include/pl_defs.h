@@ -35,6 +35,9 @@ extern volatile const uint32_t pl_board_id;
 enum {
   PL_BOARD_DEBUG_ID = 0,
   PL_BOARD_BUTTONBOARD_ID,
+  PL_BOARD_HAL_ID,
+  PL_BOARD_MOTORBOARD_ID,
+  PL_BOARD_DASH_ID,
   // Insert new boards here
   PL_BOARD_NUM,
 };

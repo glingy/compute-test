@@ -18,17 +18,7 @@
   "files.associations": {
     "*.json": "jsonc",
     "type_traits": "cpp",
-    "memory.h": "c",
-    "string.h": "c",
-    "features.h": "c",
-    "_ansi.h": "c",
-    "cdefs.h": "c",
-    "reent.h": "c",
-    "stdlib.h": "c",
-    "stddef.h": "c",
-    "can.h": "c",
-    "pl_can.h": "c",
-    "pl_defs.h": "c"
+    "*.h": "c",
   },
   "editor.formatOnSave": true,
   "editor.formatOnType": true,

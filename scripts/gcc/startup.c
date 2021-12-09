@@ -169,7 +169,6 @@ void Reset_Handler(void) {
   /* Set the vector table base address */
   pSrc      = (uint32_t *) &_sfixed;
   SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);
-  //EIC->NMICTRL.reg = NMISENSE_NONE;
 
   /* Initialize the C library */
   __libc_init_array();
