@@ -5,7 +5,6 @@
 .vscode/ipch
 .DS_Store
 sources/*
-!sources/blinky
 .src
 local.ini
 !sources/x_*

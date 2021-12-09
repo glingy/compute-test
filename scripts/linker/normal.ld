@@ -35,7 +35,8 @@ SEARCH_DIR(.)
 /* Memory Spaces Definitions */
 MEMORY
 {
-  rom      (rx)  : ORIGIN = 0x00000000, LENGTH = 0x00040000
+  vec      (rx)  : ORIGIN = 0x00000000, LENGTH = 0x00000100
+  rom      (rx)  : ORIGIN = 0x00000100, LENGTH = 0x0003FF00
   ram      (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00008000
 }
 
@@ -46,12 +47,20 @@ STACK_SIZE = DEFINED(STACK_SIZE) ? STACK_SIZE : DEFINED(__stack_size__) ? __stac
 /* Section Definitions */
 SECTIONS
 {
-    .text :
+    .vectors :
     {
         . = ALIGN(4);
         _sfixed = .;
         KEEP(*(.vectors .vectors.*))
-        KEEP(*(.test_prog))
+        KEEP(*(.board_id))
+    } > vec
+
+    .text :
+    {
+        . = ALIGN(4);
+        /* _sfixed = .; */
+        /* KEEP(*(.vectors .vectors.*)) */
+        /* KEEP(*(.board_id)) */
         *(.text .text.* .gnu.linkonce.t.*)
         *(.glue_7t) *(.glue_7)
         *(.rodata .rodata* .gnu.linkonce.r.*)

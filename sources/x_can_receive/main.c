@@ -47,9 +47,9 @@ int main() {
   pl_can_init(CAN0);
   pl_can_tx_config(CAN0, can0_tx_buffer, 1, 0, false);
 
-  pl_can_rx_reject_by_default(CAN0);
-  pl_can_rx_filter_config(CAN0, ARRAY(can0_filters));
-  pl_can_rx_fifo0_config(CAN0, ARRAY(can0_rx_buffer), false);
+  //pl_can_rx_reject_by_default(CAN0);
+  //pl_can_rx_filter_config(CAN0, ARRAY(can0_filters));
+  //pl_can_rx_fifo0_config(CAN0, ARRAY(can0_rx_buffer), false);
 
   pl_can_start(CAN0);
 

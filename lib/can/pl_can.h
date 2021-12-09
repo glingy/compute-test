@@ -1,12 +1,37 @@
 #ifndef PL_CAN_H
 #define PL_CAN_H
 
-#include "pl_can_message.h"
 #include "pl_can_rx.h"
 #include "pl_can_tx.h"
+#include "pl_can_types.h"
 
 #include <pl_defs.h>
 #include <sam.h>
+
+/**
+ * Default can messages.
+ * These should be present in all programs to send an error message (if needed) and the startup message.
+ * The startup message should be sent once initialization is complete (or as complete as possible before CAN is disabled).
+ * User can messages should start at index 2.
+ **/
+enum {
+  PL_CAN_TX_ERROR_MSG = 0,
+  PL_CAN_TX_STARTUP_MSG,
+};
+
+#define PL_CAN_TX_ERROR_BUFFER \
+  {                            \
+    .ID    = 0x1,              \
+    .DLC   = 0x4,              \
+    .bytes = { 0 },            \
+  }
+
+#define PL_CAN_TX_STARTUP_BUFFER \
+  {                              \
+    .ID    = 0x51,               \
+    .DLC   = 0x4,                \
+    .bytes = { 0 },              \
+  }
 
 static inline void pl_can_clock_init(Can * can) {
   // Enable the CAN clock using GLCK1

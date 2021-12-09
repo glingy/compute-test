@@ -1,7 +1,7 @@
 #ifndef PL_CAN_RX_H
 #define PL_CAN_RX_H
 
-#include "pl_can_message.h"
+#include "pl_can_types.h"
 
 #include <pl_defs.h>
 #include <sam.h>
